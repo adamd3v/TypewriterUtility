@@ -69,15 +69,10 @@ public class TypewriterManager : MonoBehaviour
 
     private IEnumerator CoTypewriterRoutine(List<TypewriterObject> list, float delay)
     {
-        typewriterOutput = string.Empty;
-        float timer = 0f;
-        
         for(int i = 0; i < list.Count; i++)
         {
             typewriterFinalOutput = list[i].message;
             typewriterOutput = string.Empty;
-
-            timer = 0f;
 
             for(int y = 0; y < list[i].message.Length; y++)
             {
@@ -91,11 +86,7 @@ public class TypewriterManager : MonoBehaviour
                 }
             }
 
-            while (timer < delay || Input.GetKey(KeyCode.Space))
-            {
-                timer += Time.deltaTime;
-                yield return null;
-            }
+            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
 
             if (OnMessageComplete != null)
             {
