@@ -43,14 +43,6 @@ public class TypewriterManager : MonoBehaviour
     /// </summary>
     public static System.Action OnDialogueComplete;
 
-    /// <summary>
-    /// Starts the typewriter sequence.
-    /// </summary>
-    public void Play()
-    {
-        StartCoroutine(CoTypewriterRoutine(messageQueue, 3f));
-    }
-
     private void Awake()
     {
         if(instance != null)
@@ -65,7 +57,9 @@ public class TypewriterManager : MonoBehaviour
 
     private void OnEnable()
     {
-        Play();
+        typewriterOutput = string.Empty;
+        typewriterFinalOutput = string.Empty;
+        StartCoroutine(CoTypewriterRoutine(messageQueue, 3f));
     }
 
     private void OnDisable()
