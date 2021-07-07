@@ -57,14 +57,14 @@ public class TypewriterManager : MonoBehaviour
 
     private void OnEnable()
     {
-        typewriterOutput = string.Empty;
-        typewriterFinalOutput = string.Empty;
         StartCoroutine(CoTypewriterRoutine(messageQueue, 3f));
     }
 
     private void OnDisable()
     {
         StopCoroutine(CoTypewriterRoutine(messageQueue, 3f));
+        typewriterOutput = string.Empty;
+        typewriterFinalOutput = string.Empty;
     }
 
     private IEnumerator CoTypewriterRoutine(List<TypewriterObject> list, float delay)
